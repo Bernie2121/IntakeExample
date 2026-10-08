@@ -1,13 +1,12 @@
 package org.firstinspires.ftc.teamcode
 
-import com.pedropathing.geometry.Pose
+import com.pedropathing.math.Pose
 import com.seattlesolvers.solverslib.command.CommandOpMode
 import com.seattlesolvers.solverslib.command.SequentialCommandGroup
 import com.seattlesolvers.solverslib.command.ParallelDeadlineGroup
 import com.seattlesolvers.solverslib.command.InstantCommand
 import com.seattlesolvers.solverslib.gamepad.GamepadEx
 import org.firstinspires.ftc.teamcode.utils.Alliance
-import org.firstinspires.ftc.teamcode.paths.example.ExamplePaths
 
 /**
  * The following class was created with the objective of serving as a template for an autonomous routine.
@@ -38,7 +37,7 @@ open class AutonomousBuilder(private val alliance: Alliance): CommandOpMode() {
         // TODO Initialize the instance of your Paths class
 
         // TODO Set starting pose based on the autonomous to follow
-        robot.initAuto(Pose())
+        robot.initAuto(Pose(0.0, 0.0, 0.0))
 
         // Chain commands inside the autonomous command //
         // TODO IMPORTANT. Fill out the requirements of each command nested in here, if not, the robot won't follow any path.
