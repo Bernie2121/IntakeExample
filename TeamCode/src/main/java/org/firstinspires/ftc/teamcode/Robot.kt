@@ -9,8 +9,12 @@ import com.seattlesolvers.solverslib.command.InstantCommand
 import com.seattlesolvers.solverslib.gamepad.GamepadEx
 import com.seattlesolvers.solverslib.purepursuit.Path
 import org.firstinspires.ftc.robotcore.external.Telemetry
+import org.firstinspires.ftc.teamcode.subsystems.Intake.Intake
 import org.firstinspires.ftc.teamcode.utils.Alliance
 import org.firstinspires.ftc.teamcode.utils.TecDroidRobot
+import org.firstinspires.ftc.teamcode.utils.extensions.a
+import org.firstinspires.ftc.teamcode.utils.extensions.onFalse
+import org.firstinspires.ftc.teamcode.utils.extensions.onTrue
 
 class Robot(
     private val alliance: Alliance,
@@ -19,13 +23,14 @@ class Robot(
     telemetry: Telemetry
 ): TecDroidRobot(telemetry, hardwareMap) {
 
+     lateinit var intake : Intake
     init {
         subsystemInitialization()
     }
 
     /* Initialize your subsystems and follower here */
     override fun subsystemInitialization() {
-
+        intake = Intake(hardwareMap)
     }
 
     /* Runs indefinitely after the init button on the DS is pressed. Stops when play button is pressed */
@@ -37,6 +42,10 @@ class Robot(
 
         // Build Commands:
         // controller.button().onTrue(Command)
+
+        controller.a().onTrue(intake.turnOnIntakeCMD()).onFalse(
+            intake.turnOffIntakeCMD()
+        )
     }
 
     /* Initialize your auto commands here, set chassis alliance and starting pose */
